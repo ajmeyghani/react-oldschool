@@ -1,0 +1,31 @@
+{
+  "name": "react-boilerplate-2018",
+  "version": "1.0.0",
+  "description": "A simple boilerplate for React projects.",
+  "main": "bundle.js",
+  "scripts": {
+    "dev": "run-p js:dev css:dev server:dev",
+    "js:dev": "babel -w src/  --out-file public/bundle.js",
+    "css:dev": "node scripts/watch-css.js",
+    "server:dev": "browser-refresh server/www.js"
+  },
+  "repository": "https://github.com/aminmeyghani/react-boilerplate-2018",
+  "author": "AJ Meyghani",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "browser-refresh": "^1.7.3",
+    "browser-refresh-client": "^1.1.4",
+    "chokidar": "^2.0.4",
+    "clean-css": "^4.2.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "glob": "^7.1.2",
+    "npm-run-all": "^4.1.3"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
