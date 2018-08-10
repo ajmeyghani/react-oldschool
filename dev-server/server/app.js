@@ -4,13 +4,13 @@ const mockApi = require('./mock-api');
 const app = express();
 const ROOT_PATH = process.cwd();
 const nodeModules = path.join(ROOT_PATH, 'node_modules');
-const publicPath = path.join(ROOT_PATH, 'public');
+const devBundles = path.join(ROOT_PATH, 'dev-bundles');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/node_modules', express.static(nodeModules));
-app.use('/public', express.static(publicPath));
+app.use('/dev-bundles', express.static(devBundles));
 app.use('/api', mockApi);
 
 app.all(/^\/(?!api).*/, (req, res) => {
@@ -20,8 +20,8 @@ app.all(/^\/(?!api).*/, (req, res) => {
   });
 });
 
-app.all(/.*bundle\.js$/, (req, res) => {
-  res.sendFile('bundle.js', {root: path.join('public') });
+app.all(/.*all\.js$/, (req, res) => {
+  res.sendFile('all.js', {root: path.join('dev-bundles') });
 });
 
 app.all("/404", (req, res, next) => {

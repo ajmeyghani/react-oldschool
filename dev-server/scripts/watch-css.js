@@ -4,7 +4,7 @@ const chokidar = require('chokidar');
 const glob = require('glob');
 const CleanCSS = new require('clean-css');
 
-const OUT_FILE = path.join('./public', 'bundle.css');
+const OUT_FILE = path.join('./dev-bundles', 'all.css');
 const SOURCE = './src/**/*.css';
 const css = new CleanCSS();
 
