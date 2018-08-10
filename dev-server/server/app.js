@@ -5,7 +5,7 @@ const mockApi = require('./mock-api');
 const app = express();
 const ROOT_PATH = process.cwd();
 const nodeModules = path.join(ROOT_PATH, 'node_modules');
-const devBundles = path.join(ROOT_PATH, 'dev-bundles');
+const devBundles = path.join(ROOT_PATH, config.bundleFolder);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
