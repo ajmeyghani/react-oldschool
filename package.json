@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "run-p js:dev css:dev server:dev",
     "js:dev": "babel -w src/  --out-file public/bundle.js",
-    "css:dev": "node scripts/watch-css.js",
-    "server:dev": "browser-refresh server/www.js"
+    "css:dev": "node dev-server/scripts/watch-css",
+    "server:dev": "browser-refresh dev-server/server/www.js"
   },
   "repository": "https://github.com/aminmeyghani/react-boilerplate-2018",
   "author": "AJ Meyghani",
