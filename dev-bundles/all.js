@@ -9,7 +9,7 @@ const App = props => React.createElement(
   React.createElement(
     'p',
     null,
-    'Hello React3!'
+    'Hello React!'
   ),
   React.createElement(
     FancyButton,

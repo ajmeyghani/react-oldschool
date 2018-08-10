@@ -25,3 +25,9 @@ node_modules
 
 # test converage results
 converage
+
+# bundles
+dev-bundles
+bundles
+dist
+build

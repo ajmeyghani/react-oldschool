@@ -1,4 +1,5 @@
 const path = require('path');
+const config = require('../config.json');
 const express = require('express');
 const mockApi = require('./mock-api');
 const app = express();
@@ -10,7 +11,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/node_modules', express.static(nodeModules));
-app.use('/dev-bundles', express.static(devBundles));
+app.use('/' + config.bundleFolder, express.static(devBundles));
 app.use('/api', mockApi);
 
 app.all(/^\/(?!api).*/, (req, res) => {
@@ -21,7 +22,7 @@ app.all(/^\/(?!api).*/, (req, res) => {
 });
 
 app.all(/.*all\.js$/, (req, res) => {
-  res.sendFile('all.js', {root: path.join('dev-bundles') });
+  res.sendFile(config.jsBundle, {root: path.join(config.bundleFolder) });
 });
 
 app.all("/404", (req, res, next) => {

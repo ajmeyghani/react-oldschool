@@ -1,5 +1,5 @@
 {
-  "bundle-folder": "dev-bundles",
-  "css": "all.css",
-  "js": "all.js"
+  "bundleFolder": "dev-bundles",
+  "cssBundle": "all.css",
+  "jsBundle": "all.js"
 }

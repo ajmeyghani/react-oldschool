@@ -1,7 +1,7 @@
 .sr-fancy-button {
   transition: all 500ms ease-in-out;
   padding: 1rem;
-  border: 1px solid orange;
-  background-color: black;
-  color: #fff;
+  border: 2px solid red;
+  background-color: #ccc;
+  color: #000;
 }

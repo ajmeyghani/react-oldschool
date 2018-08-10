@@ -1,10 +1,11 @@
 const path = require('path');
+const config = require('../config.json');
 const fs = require('fs');
 const chokidar = require('chokidar');
 const glob = require('glob');
 const CleanCSS = new require('clean-css');
 
-const OUT_FILE = path.join('./dev-bundles', 'all.css');
+const OUT_FILE = path.join(config.bundleFolder, config.cssBundle);
 const SOURCE = './src/**/*.css';
 const css = new CleanCSS();
 

@@ -4,8 +4,8 @@
   "description": "A simple boilerplate for React projects.",
   "main": "bundle.js",
   "scripts": {
-    "dev": "run-p js:dev css:dev server:dev",
-    "js:dev": "babel -w src/  --out-file dev-bundles/all.js",
+    "dev": "node dev-server/scripts/clean-up && run-p js:dev css:dev server:dev",
+    "js:dev": "node dev-server/scripts/watch-js",
     "css:dev": "node dev-server/scripts/watch-css",
     "server:dev": "browser-refresh dev-server/server/www.js"
   },
