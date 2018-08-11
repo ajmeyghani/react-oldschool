@@ -1,13 +1,10 @@
-const path = require('path');
-const util = require('util');
 const fs = require('fs');
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
+const path = require('path');
 const chokidar = require('chokidar');
 const config = require('../config.json');
+
 const SOURCE = './src/**/*.css';
 const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
-
 const cssLink = (file) => `<link rel="stylesheet" href="/${file}">`;
 
 const readWithIndex = (filepath) => {
