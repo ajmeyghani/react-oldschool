@@ -1,7 +1,7 @@
 const App = (props) => (
   <div>
     <p>Hello React!</p>
-    <FancyButton>Click</FancyButton>
+    <MyButton>Click</MyButton>
   </div>
 );
 

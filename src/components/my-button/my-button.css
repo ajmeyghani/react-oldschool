@@ -1,0 +1,6 @@
+.my-button {
+  transition: all 250ms ease-in-out;
+  border: 5px solid red;
+  padding: 1rem;
+  min-width: 200px;
+}

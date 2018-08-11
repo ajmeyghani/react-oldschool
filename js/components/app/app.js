@@ -7,11 +7,11 @@ const App = props => React.createElement(
     'Hello React!'
   ),
   React.createElement(
-    FancyButton,
+    MyButton,
     null,
     'Click'
   )
 );
 
 ReactDOM.render(React.createElement(App, null), document.getElementById('app-root'), () => console.log('Ready to go5'));
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=app.js.map

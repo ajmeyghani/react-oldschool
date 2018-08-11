@@ -56,7 +56,9 @@ const add = (newItem) => {
 
   const left = lines.slice(0, end);
   const leftPlusNewScript = left.concat(newItem);
-  const all = leftPlusNewScript.concat(lines.slice(end, lines.length));
+  const excludeApp = leftPlusNewScript.filter(v => v.search('app.js') === -1);
+  const appjs = leftPlusNewScript.filter(v => ~v.search('app.js'));
+  const all = excludeApp.concat(appjs).concat(lines.slice(end, lines.length));
 
   let newContent =  all.join('\n');
   return fs.writeFileSync(indexFile, newContent);
