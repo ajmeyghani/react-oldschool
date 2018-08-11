@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/components/fancy-button.js"],"names":["FancyButton","props","children"],"mappings":"AAAA,MAAMA,cAAeC,KAAD,IAAW;AAAA;AAAA,IAAQ,WAAU,iBAAlB;AAAqCA,QAAMC;AAA3C,CAA/B","file":"fancy-button.js","sourcesContent":["const FancyButton = (props) => <button className=\"sr-fancy-button\">{props.children}</button>\n"]}
