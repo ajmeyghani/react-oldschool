@@ -1,7 +1,9 @@
 .sr-fancy-button {
   transition: all 500ms ease-in-out;
-  padding: 2rem;
-  border: 5px solid red;
+  padding: 1rem;
+  border: 5px solid blue;
   background-color: #ccc;
-  color: #000;
+  color: #fff;
+  background: transparent;
+  background-image: url('./fancy-button.png');
 }

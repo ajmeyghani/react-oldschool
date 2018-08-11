@@ -12,7 +12,7 @@ const SOURCE_MAP_FILE = path.join(config.bundleFolder, `${config.cssBundle}.map`
 
 const css = new CleanCSS({
   sourceMap: true,
-  rebaseTo: config.bundleFolder,
+  rebase: false,
 });
 
 var watcher = chokidar.watch('./src/**/*.css', {

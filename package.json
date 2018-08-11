@@ -4,9 +4,10 @@
   "description": "A simple boilerplate for React projects.",
   "main": "bundle.js",
   "scripts": {
-    "dev": "node dev-server/scripts/clean-up && run-p js:dev css:dev server:dev",
+    "dev": "node dev-server/scripts/clean-up && run-p js:dev css:dev server:dev copy:dev",
     "js:dev": "node dev-server/scripts/watch-js",
     "css:dev": "node dev-server/scripts/watch-css",
+    "copy:dev": "node dev-server/scripts/watch-assets",
     "server:dev": "browser-refresh dev-server/server/www.js"
   },
   "repository": "https://github.com/aminmeyghani/react-boilerplate-2018",

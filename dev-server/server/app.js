@@ -5,12 +5,14 @@ const mockApi = require('./mock-api');
 const app = express();
 const ROOT_PATH = process.cwd();
 const nodeModules = path.join(ROOT_PATH, 'node_modules');
+const src = path.join(ROOT_PATH, 'src');
 const devBundles = path.join(ROOT_PATH, config.bundleFolder);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/node_modules', express.static(nodeModules));
+app.use('/src', express.static(src));
 app.use('/' + config.bundleFolder, express.static(devBundles));
 app.use('/api', mockApi);
 
