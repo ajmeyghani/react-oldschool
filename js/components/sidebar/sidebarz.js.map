@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/sidebar/sidebarz.js"],"names":["Sidebar","pros"],"mappings":"AAAA,MAAMA,UAAWC,IAAD,IAAU;AAAA;AAAA;AAAA;AAAA,CAA1B","file":"sidebarz.js","sourcesContent":["const Sidebar = (pros) => <p>sidebar</p>;\n"]}

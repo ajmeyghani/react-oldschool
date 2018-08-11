@@ -5,6 +5,10 @@
   "main": "bundle.js",
   "scripts": {
     "dev": "node dev-server/scripts/clean-up && run-p js:dev css:dev server:dev copy:dev",
+    "dev2": "rm -rf js && run-p css js js:watch server:dev",
+    "css": "node dev-server/scripts/css-insert",
+    "js": "node dev-server/scripts/js-insert",
+    "js:watch": "node dev-server/scripts/watch-js",
     "js:dev": "node dev-server/scripts/watch-js",
     "css:dev": "node dev-server/scripts/watch-css",
     "copy:dev": "node dev-server/scripts/watch-assets",

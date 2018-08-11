@@ -3,9 +3,9 @@ const path = require('path');
 const chokidar = require('chokidar');
 const config = require('../config.json');
 
-const SOURCE = './js/**/*.js';
+const SOURCE = './src/**/*.js';
 const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
-const jsLink = (file) => `<script src="/${file}"></script>`;
+const jsLink = (file) => `<script src="/${file.replace('src/', 'js/')}"></script>`;
 
 const readWithIndex = (filepath) => {
   const indexFile = filepath;
@@ -65,7 +65,7 @@ const add = (newItem) => {
 const remove = (toRemove) => {
   const result = readWithIndex(indexFile);
   const {start, end, content} = result;
-  const lines = content.split('\n').filter(v => v.search(toRemove) === -1);
+  const lines = content.split('\n').filter(v => v.search(toRemove.replace('src', 'js')) === -1);
   const newContent = lines.join('\n');
   return fs.writeFileSync(indexFile, newContent);
 };
@@ -76,7 +76,7 @@ const start = () => {
 
   prepare();
 
-  const watcher = chokidar.watch('./js/**/*.js', {
+  const watcher = chokidar.watch(SOURCE, {
     ignored: /(^|[\/\\])\../,
     persistent: true
   })

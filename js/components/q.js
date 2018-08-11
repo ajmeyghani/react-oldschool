@@ -1,2 +1,0 @@
-
-//# sourceMappingURL=q.js.map
