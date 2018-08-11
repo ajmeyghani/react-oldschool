@@ -12,6 +12,7 @@ const SOURCE_MAP_FILE = path.join(config.bundleFolder, `${config.cssBundle}.map`
 
 const css = new CleanCSS({
   sourceMap: true,
+  format: 'beautify',
   rebase: false,
 });
 
@@ -24,11 +25,18 @@ var watcher = chokidar.watch('./src/**/*.css', {
   glob(SOURCE, (err, files) => {
     css.minify(files, (err, output) => {
       console.log(output.stats);
+
       fs.writeFile(OUT_FILE, output.styles + SOURCE_MAP_PATH, (err) => {
         if(err) throw new Error('couldnt write the output css.')
       });
 
-      fs.writeFile(SOURCE_MAP_FILE, output.sourceMap.toString(), (err) => {
+      const sourceMapsWithPath = (sourceMap) => {
+        const mapValues = JSON.parse(sourceMap);
+        const newSources = mapValues.sources.map(v => '../' + v);
+        return JSON.stringify(Object.assign({}, mapValues, {sources: newSources}));
+      };
+
+      fs.writeFile(SOURCE_MAP_FILE, sourceMapsWithPath(output.sourceMap.toString()), (err) => {
         if(err) throw new Error('couldnt write the source map for css.')
       });
     });
