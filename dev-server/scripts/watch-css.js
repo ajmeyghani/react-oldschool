@@ -5,10 +5,10 @@ const chokidar = require('chokidar');
 const glob = require('glob');
 const CleanCSS = new require('clean-css');
 
+const SOURCE = './src/**/*.css';
 const OUT_FILE = path.join(config.bundleFolder, config.cssBundle);
 const SOURCE_MAP_PATH = `\n/*# sourceMappingURL=${config.cssBundle}.map */`;
-
-const SOURCE = './src/**/*.css';
+const SOURCE_MAP_FILE = path.join(config.bundleFolder, `${config.cssBundle}.map`);
 
 const css = new CleanCSS({
   sourceMap: true,
@@ -28,7 +28,7 @@ var watcher = chokidar.watch('./src/**/*.css', {
         if(err) throw new Error('couldnt write the output css.')
       });
 
-      fs.writeFile(path.join(config.bundleFolder, 'bundle.css.map'), output.sourceMap.toString(), (err) => {
+      fs.writeFile(SOURCE_MAP_FILE, output.sourceMap.toString(), (err) => {
         if(err) throw new Error('couldnt write the source map for css.')
       });
     });
