@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <% include ../partials/head %>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="<%= cssBundlePath %>">
+  <script src="/node_modules/react/umd/react.production.min.js"></script>
+  <script src="/node_modules/react-dom/umd/react-dom.production.min.js"></script>
+  <title>React Boilerplate</title>
 </head>
 <body>
   <div id="app-root"></div>
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
-  <script src="/dev-bundles/all.js"></script>
+  <script src="<%= jsBundlePath %>"></script>
   <script src="<%= browserRefreshUrl %>"></script>
 </body>
 </html>

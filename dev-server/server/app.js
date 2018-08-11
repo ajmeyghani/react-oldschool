@@ -18,10 +18,13 @@ app.all(/^\/(?!api).*/, (req, res) => {
   res.render('pages/index', {
     browserRefreshUrl: process.env.BROWSER_REFRESH_URL,
     today: new Date(),
+    jsBundlePath: `/${config.bundleFolder}/${config.jsBundle}`,
+    cssBundlePath: `/${config.bundleFolder}/${config.cssBundle}`,
   });
 });
 
-app.all(/.*all\.js$/, (req, res) => {
+const isAllJs = new RegExp(`.*${config.jsBundle}$`);
+app.all(isAllJs, (req, res) => {
   res.sendFile(config.jsBundle, {root: path.join(config.bundleFolder) });
 });
 
