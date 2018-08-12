@@ -2,14 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Reads the given index.html file with a regular expression
- * determining the boundaries where the scripts should be added.
- * @param  {string} indexFile path to the index file
+ * Given a string, representing the content of a file, returns
+ * the start and the end line numbers where the pattern appears in the file.
+ * @param  {string} content content of the file.
  * @param  {object} patterns  object containing the regular expressions using start and end fields
  * @return {object}           object containing the `start`, `end` index, and the original `content`
  */
-const readFile = (indexFile, patterns) => {
-  const content = fs.readFileSync(indexFile, 'utf-8');
+const startEndLines = (content, patterns) => {
   const lines = content.split('\n');
   let start = 0;
   let end = 0;
@@ -36,34 +35,34 @@ const readFile = (indexFile, patterns) => {
 /**
  * Remove any scripts that are left over resulting in a clean file
  * with clear boundaries.
- * @param  {string} indexFile path to the index.html file
- * @return {undefined|error}           result of writing result to file.
+ * @param  {string} indexContent content of the file, usually index.html
+ * @return {string} content of the file after the scripts lines have been removed.
  */
-const resetFile = (indexFile, patterns) => {
-  const result = readFile(indexFile, patterns);
+const resetFile = (indexContent, patterns) => {
+  const result = startEndLines(indexContent, patterns);
   const {start, end, content} = result;
   let baseContent = '';
   if(start === end - 1) {
-    return fs.writeFileSync(indexFile, content);
+    return content;
   } else {
     const lines = content.split('\n');
     const leftPartition = lines.slice(0, start + 1);
     const rightPartition = lines.slice(end, lines.length);
     baseContent = leftPartition.concat(rightPartition).join('\n');
   }
-  return fs.writeFileSync(indexFile, baseContent);
+  return baseContent;
 };
 
 /**
  * Adds a script to a given index.html file.
- * @param  {string} indexFile path to the index.html file.
+ * @param  {string} indexContent content of the file, usually index.html.
  * @param  {object} patterns  object containing `start` and `end` regular expressions to determine
  * the boundaries where the scripts or links should be added.
  * @param  {string} newItem   the item/scrip to be added.
- * @return {undefined|error}           result of writing the content to the index file.
+ * @return {string} newContent  new content with the scripts added.
  */
-const addScript = (indexFile, patterns, newItem) => {
-  const result = readFile(indexFile, patterns);
+const addScript = (indexContent, patterns, newItem) => {
+  const result = startEndLines(indexContent, patterns);
   const {start, end, content} = result;
   const lines = content.split('\n');
 
@@ -72,25 +71,25 @@ const addScript = (indexFile, patterns, newItem) => {
   const all = leftPlusNewScript.concat(lines.slice(end, lines.length));
 
   let newContent =  all.join('\n');
-  return fs.writeFileSync(indexFile, newContent);
+  return newContent;
 };
 
 /**
- * Removes a script to a given index.html file.
- * @param  {string} indexFile path to the index.html file.
+ * Removes a script from a given string, representing the content of a file, usually index.html.
+ * @param  {string} indexContent content of the file, usually index.html.
  * @param  {object} patterns  object containing `start` and `end` regular expressions to determine
  * the boundaries where the scripts or links should be removed.
- * @param  {string} toRemove   the item/scrip to be removed.
- * @return {undefined|error}           result of writing the content to the index file.
+ * @param  {string} toRemove  the item/scrip to be removed.
+ * @return {string} newContent  the new content with the given scripts removed.
  */
-const removeScript = (indexFile, patterns, toRemove) => {
-  const result = readFile(indexFile, patterns);
+const removeScript = (indexContent, patterns, toRemove) => {
+  const result = startEndLines(indexContent, patterns);
   const {start, end, content} = result;
   const lines = content.split('\n').filter(v => v.search(toRemove) === -1);
   const newContent = lines.join('\n');
-  return fs.writeFileSync(indexFile, newContent);
+  return newContent;
 };
 
 module.exports = {
-  readFile, resetFile, addScript, removeScript,
+  startEndLines, resetFile, addScript, removeScript,
 };
