@@ -76,7 +76,7 @@ const start = () => {
 
   prepare();
 
-  const watcher = chokidar.watch('./src/**/*.css', {
+  const watcher = chokidar.watch(SOURCE, {
     ignored: /(^|[\/\\])\../,
     persistent: true
   })
@@ -97,6 +97,8 @@ const start = () => {
     console.log('removed file', file);
     remove(file);
   });
+  // .on('addDir', path => log(`Directory ${path} has been added`))
+  // .on('unlinkDir', path => log(`Directory ${path} has been removed`));
 };
 
 start();

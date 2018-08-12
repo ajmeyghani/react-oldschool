@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/components/my-button/my-button.js"],"names":["MyButton","props"],"mappings":"AAAA,MAAMA,WAAYC,KAAD,IAAW;AAAA;AAAA,IAAQ,WAAU,WAAlB;AAAA;AAAA,CAA5B","file":"my-button.js","sourcesContent":["const MyButton = (props) => <button className='my-button'>hello</button>;\n"]}

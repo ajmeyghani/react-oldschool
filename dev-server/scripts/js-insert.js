@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {exec} = require('child_process');
 const path = require('path');
 const chokidar = require('chokidar');
 const config = require('../config.json');
@@ -73,6 +74,13 @@ const remove = (toRemove) => {
 };
 
 const start = () => {
+  const outputFile = path.join(config.bundleFolder, config.jsBundle);
+  exec(`npx babel -w src/ --out-dir js --source-maps`, (err, stdout, stderr) => {
+    if (err) {
+      throw new Error(err);
+    }
+  });
+
   let isReady = false;
   let files = [];
 
@@ -99,6 +107,8 @@ const start = () => {
     console.log('removed file', file);
     remove(file);
   });
+  // .on('addDir', path => log(`Directory ${path} has been added`))
+  // .on('unlinkDir', path => log(`Directory ${path} has been removed`));
 };
 
 start();
