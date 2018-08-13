@@ -8,7 +8,7 @@ const assets = [
   '.jpeg',
   '.gif',
   '.svg',
-].map(v => 'src/**/*' + v)
+].map(v => 'src/**/*' + v);
 
 var watcher = chokidar.watch(assets, {
   ignored: /(^|[\/\\])\../,

@@ -18,7 +18,6 @@ browserRefreshClient
   }
 });
 
-/* start server */
 app.listen(PORT, function() {
   console.log('Listening on port %d', PORT);
 

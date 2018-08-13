@@ -1,5 +1,6 @@
 {
   "bundleFolder": "dev-bundle",
   "cssBundle": "bundle.css",
-  "jsBundle": "bundle.js"
+  "jsBundle": "bundle.js",
+  "devJs": "dev-js"
 }
