@@ -2,8 +2,8 @@
  * Given a string, representing the content of a file, returns
  * the start and the end line numbers where the pattern appears in the file.
  * @param  {string} content content of the file.
- * @param  {object} patterns  object containing the regular expressions using start and end fields
- * @return {object}           object containing the `start`, `end` index, and the original `content`
+ * @param  {object} patterns object containing the regular expressions using start and end fields.
+ * @return {object}          object containing the `start`, `end` index, and the original `content`.
  */
 const getBoundaries = (content, patterns) => {
   const lines = content.split('\n');
@@ -22,7 +22,8 @@ const getBoundaries = (content, patterns) => {
     }
   });
   return {
-    start, end, content,
+    start, end,
+    lines: content.split('\n'),
   };
 };
 
@@ -33,11 +34,10 @@ const getBoundaries = (content, patterns) => {
  * @return {string} content of the file after the scripts lines have been removed.
  */
 const resetScripts = (indexContent, patterns) => {
-  const {start, end, content} = getBoundaries(indexContent, patterns);
+  const {start, end, lines} = getBoundaries(indexContent, patterns);
   if(start === end - 1) {
-    return content;
+    return indexContent;
   }
-  const lines = content.split('\n');
   const leftPartition = lines.slice(0, start + 1);
   const rightPartition = lines.slice(end, lines.length);
   return leftPartition.concat(rightPartition).join('\n');
@@ -52,8 +52,7 @@ const resetScripts = (indexContent, patterns) => {
  * @return {string} newContent  new content with the scripts added.
  */
 const addScript = (indexContent, patterns, newItem) => {
-  const {start, end, content} = getBoundaries(indexContent, patterns);
-  const lines = content.split('\n');
+  const {start, end, lines} = getBoundaries(indexContent, patterns);
   const left = lines.slice(0, end);
   const leftPlusNewScript = left.concat(newItem);
   const all = leftPlusNewScript.concat(lines.slice(end, lines.length));
@@ -66,12 +65,11 @@ const addScript = (indexContent, patterns, newItem) => {
  * @param  {string} indexContent content of the file, usually index.html.
  * @param  {object} patterns  object containing `start` and `end` regular expressions to determine
  * the boundaries where the scripts or links should be removed.
- * @param  {string} toRemove  the item/scrip to be removed.
- * @return {string} newContent  the new content with the given scripts removed.
+ * @param  {string|array} toRemove  the script or scripts to be removed.
+ * @return {string} newContent  the new content with the scripts removed.
  */
 const removeScript = (indexContent, patterns, toRemove) => {
-  const {start, end, content} = getBoundaries(indexContent, patterns);
-  const lines = content.split('\n');
+  const {start, end, lines} = getBoundaries(indexContent, patterns);
   if(Array.isArray(toRemove)) {
     const doesContain = (v, arr) => arr.some(r => ~v.search(new RegExp(`${r}\\b`)));
     const remove = (vals, key) => vals.filter(v => doesContain(v, key) ? false : true);
