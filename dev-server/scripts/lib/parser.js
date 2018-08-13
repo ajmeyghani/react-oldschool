@@ -7,8 +7,8 @@
  */
 const getBoundaries = (content, patterns) => {
   const lines = content.split('\n');
-  let start = 0;
-  let end = 0;
+  let start = undefined;
+  let end = undefined;
   lines.some((v, i) => {
     if(patterns.start.test(v)) {
       start = i;
@@ -22,8 +22,7 @@ const getBoundaries = (content, patterns) => {
     }
   });
   return {
-    start, end,
-    lines: content.split('\n'),
+    start, end, lines,
   };
 };
 
@@ -56,8 +55,7 @@ const addScript = (indexContent, patterns, newItem) => {
   const left = lines.slice(0, end);
   const leftPlusNewScript = left.concat(newItem);
   const all = leftPlusNewScript.concat(lines.slice(end, lines.length));
-  let newContent =  all.join('\n');
-  return newContent;
+  return all.join('\n');
 };
 
 /**
@@ -71,7 +69,7 @@ const addScript = (indexContent, patterns, newItem) => {
 const removeScript = (indexContent, patterns, toRemove) => {
   const {start, end, lines} = getBoundaries(indexContent, patterns);
   if(Array.isArray(toRemove)) {
-    const doesContain = (v, arr) => arr.some(r => ~v.search(new RegExp(`${r}\\b`)));
+    const doesContain = (v, arr) => arr.some(r => ~v.search(r));
     const remove = (vals, key) => vals.filter(v => doesContain(v, key) ? false : true);
     return remove(lines, toRemove).join('\n');
   }
