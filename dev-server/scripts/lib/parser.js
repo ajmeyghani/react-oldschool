@@ -3,7 +3,7 @@
  * the start and the end line numbers where the pattern appears in the file.
  * @param  {string} content content of the file.
  * @param  {object} patterns object containing the regular expressions using start and end fields.
- * @return {object}          object containing the `start`, `end` index, and the original `content`.
+ * @return {object}          object containing the `start`, `end` index, and the lines of the file.
  */
 const getBoundaries = (content, patterns) => {
   const lines = content.split('\n');
@@ -47,15 +47,20 @@ const resetScripts = (indexContent, patterns) => {
  * @param  {string} indexContent content of the file, usually index.html.
  * @param  {object} patterns  object containing `start` and `end` regular expressions to determine
  * the boundaries where the scripts or links should be added.
- * @param  {string} newItem   the item/scrip to be added.
+ * @param  {string|array} newItem   the script or scripst to be added.
+ * @param  {string} position   optional argument to specify where to add, 'top', 'bottom'.
  * @return {string} newContent  new content with the scripts added.
  */
-const addScript = (indexContent, patterns, newItem) => {
+const addScript = (indexContent, patterns, newItem, position) => {
   const {start, end, lines} = getBoundaries(indexContent, patterns);
-  const left = lines.slice(0, end);
-  const leftPlusNewScript = left.concat(newItem);
-  const all = leftPlusNewScript.concat(lines.slice(end, lines.length));
-  return all.join('\n');
+  let scripts = lines.slice(start + 1, end);
+  const isArray = Array.isArray(newItem);
+  if(position === 'top') {
+    isArray ? scripts.unshift(...newItem) : scripts.unshift(newItem);
+  } else {
+    scripts = scripts.concat(newItem);
+  }
+  return lines.slice(0, start + 1).concat(scripts).concat(lines.slice(end, lines.length)).join('\n');
 };
 
 /**

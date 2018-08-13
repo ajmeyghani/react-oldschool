@@ -4,24 +4,23 @@ const path = require('path');
 const chokidar = require('chokidar');
 const config = require('../config.json');
 const {getBoundaries, resetScripts, addScript, removeScript} = require('./lib/parser');
-const SOURCE = './src/**/*.js';
-const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
-const jsLink = (file) => `<script src="/${file.replace('src/', `${config.devJs}/`)}"></script>`;
 
 const start = () => {
-  const outputFile = path.join(config.bundleFolder, config.jsBundle);
-  exec(`npx babel -w src/ --out-dir ${config.devJs} --source-maps`, (err, stdout, stderr) => {
-    if (err) {
-      throw new Error(err);
-    }
-  });
-
+  const SOURCE = './src/**/*.js';
+  const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
+  const jsLink = (file) => `<script src="/${file.replace('src/', `${config.devJs}/`)}"></script>`;
   let isReady = false;
   let files = [];
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
   };
+
+  exec(`npx babel -w src/ --out-dir ${config.devJs} --source-maps`, (err, stdout, stderr) => {
+    if (err) {
+      throw new Error(err);
+    }
+  });
 
   try {
     fs.writeFileSync(indexFile, resetScripts(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries));
@@ -41,8 +40,11 @@ const start = () => {
     .on('ready', () => {
       console.log('Watching js files ...');
       isReady = true;
+      const excludeAppjs = files.filter(f => f.search('app.js') === -1);
+      const appjs = files.filter(f => ~f.search('app.js'));
+      const filesWithApp = excludeAppjs.concat(appjs);
       fs.writeFileSync(indexFile,
-        addScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, files));
+        addScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, filesWithApp));
     })
     .on('unlink', (file) => {
       console.log('removed file', file);

@@ -125,6 +125,79 @@ new css file
   t.end();
 });
 
+test('addScript: for the given regular expressions (css):', (t) => {
+
+  const cssBoundaries = {
+    start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
+    end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
+  };
+
+  const expected = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- start css -->
+      top css file
+      css file
+      css file 2
+    <!-- end css -->
+    <script src="/node_modules/react/umd/react.development.js"></script>
+    <script src="/node_modules/react-dom/umd/react-dom.development.js"></script>
+    <title>React Boilerplate</title>
+  </head>
+  <body>
+    <div id="app-root"></div>
+    <!-- start js -->
+      js file 1
+      js file 3
+      js file 4
+    <!-- end js -->
+    <script src="<%= browserRefreshUrl %>"></script>
+  </body>
+  </html>`;
+
+  t.equal(addScript(fixture, cssBoundaries, 'top css file', 'top').replace(/\s*/g, ''),
+    expected.replace(/\s*/g, ''), 'should add the script to the top');
+  t.end();
+});
+
+test('addScript: for the given regular expressions (js):', (t) => {
+
+  const jsBoundaries = {
+    start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
+    end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
+  };
+
+  const expected = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <!-- start css -->
+        css file
+        css file 2
+      <!-- end css -->
+      <script src="/node_modules/react/umd/react.development.js"></script>
+      <script src="/node_modules/react-dom/umd/react-dom.development.js"></script>
+      <title>React Boilerplate</title>
+    </head>
+    <body>
+      <div id="app-root"></div>
+      <!-- start js -->
+        js top 1
+        js top 2
+        js file 1
+        js file 3
+        js file 4
+      <!-- end js -->
+      <script src="<%= browserRefreshUrl %>"></script>
+    </body>
+    </html>`;
+
+  t.equal(addScript(fixture, jsBoundaries, ['js top 1', 'js top 2'], 'top').replace(/\s*/g, ''),
+    expected.replace(/\s*/g, ''), 'should add multiple scripts to the top.');
+  t.end();
+});
+
 test('addScript: for the given regular expressions (js):', (t) => {
 
   const jsBoundaries = {

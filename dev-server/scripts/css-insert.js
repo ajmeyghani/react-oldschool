@@ -1,13 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
-const config = require('../config.json');
 const {getBoundaries, resetScripts, addScript, removeScript} = require('./lib/parser');
-const SOURCE = './src/**/*.css';
-const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
-const cssLink = (file) => `<link rel="stylesheet" href="/${file}">`;
 
 const start = () => {
+  const SOURCE = './src/**/*.css';
+  const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
+  const cssLink = (file) => `<link rel="stylesheet" href="/${file}">`;
   let isReady = false;
   let files = [];
   const cssBoundaries = {

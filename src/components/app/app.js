@@ -1,6 +1,6 @@
 const App = (props) => (
   <div>
-    <p>Hello React2!</p>
+    <p>Hello React!</p>
     <MyButton>Click</MyButton>
     <Footer></Footer>
   </div>
