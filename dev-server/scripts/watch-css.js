@@ -4,11 +4,27 @@ const fs = require('fs');
 const chokidar = require('chokidar');
 const glob = require('glob');
 const CleanCSS = new require('clean-css');
+const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
 
 const SOURCE = './src/**/*.css';
 const OUT_FILE = path.join(config.bundleFolder, config.cssBundle);
 const SOURCE_MAP_PATH = `\n/*# sourceMappingURL=${config.cssBundle}.map */`;
 const SOURCE_MAP_FILE = path.join(config.bundleFolder, `${config.cssBundle}.map`);
+
+const {getBoundaries, resetScripts, addScript, removeScript} = require('./lib/parser');
+const cssBoundaries = {
+  start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
+  end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
+};
+const toAdd = `<link rel="stylesheet" href="/${config.bundleFolder}/${config.cssBundle}">`;
+
+try {
+  fs.writeFileSync(indexFile, resetScripts(fs.readFileSync(indexFile, 'utf-8'), cssBoundaries));
+  fs.writeFileSync(indexFile,
+    addScript(fs.readFileSync(indexFile, 'utf-8'), cssBoundaries, toAdd));
+} catch(e) {
+  throw new Error(e);
+}
 
 const css = new CleanCSS({
   sourceMap: true,
