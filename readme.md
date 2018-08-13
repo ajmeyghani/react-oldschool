@@ -15,3 +15,11 @@ This is a lightweight React boilerplate without Webpack. You can add Webpack if 
 - Open `http://localhost:8080` to view the page.
 
 Any JavaScript file added in the `src` folder is merged into one during development and is placed in `dev-bundles/all.js`. Similarly, any `css` file in the `src` folder is grouped into a single css file placed in `dev-bundles/all.css`.
+
+## Development
+
+All the dev scripts are in the `dev-server/scripts` folder. To run the tests for the scripts, run the following:
+
+```
+npx tape 'dev-server/**/*.test.js'
+```
