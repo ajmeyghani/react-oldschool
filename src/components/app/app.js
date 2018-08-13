@@ -1,12 +1,9 @@
 const App = (props) => (
-  <div>
-    <p>Hello React!!</p>
-    <MyButton>Button</MyButton>
-  </div>
-);
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app-root'),
-  () => console.log('Ready to go5'),
+  [<TopNav key="topnav">
+      <p>React</p>
+    </TopNav>,
+    <div className="text-center page" key="app-page">
+      <p>Hello React!</p>
+      <MyButton>Button</MyButton>
+    </div>]
 );

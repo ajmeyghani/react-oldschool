@@ -1,6 +1,11 @@
 .my-button {
   transition: all 250ms ease-in-out;
-  border: 6px solid #773fe2;
+  border: 2px solid #773fe2;
   padding: 1rem;
-  min-width: 240px;
+  min-width: 295px;
+  cursor: pointer;
+}
+.my-button:hover {
+  color: #fff;
+  background-color: #773fe2;
 }

@@ -18,7 +18,7 @@ Any JavaScript file added in the `src` folder is merged into one during developm
 
 **Note**
 
-Make sure that the entry point file is called `app.js`.
+You can configure the dev server using the config file in `dev-server/config.json`.
 
 ## Development
 

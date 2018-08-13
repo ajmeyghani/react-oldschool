@@ -1,6 +1,8 @@
 {
   "bundleFolder": "dev-bundle",
+  "buildFolder": "dist",
   "cssBundle": "bundle.css",
   "jsBundle": "bundle.js",
-  "devJs": "dev-js"
+  "devJs": "dev-js",
+  "jsEntry": "main.js"
 }
