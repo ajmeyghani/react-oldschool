@@ -1,8 +1,7 @@
 const App = (props) => (
   <div>
-    <p>Hello React!</p>
-    <MyButton>Click</MyButton>
-    <Footer></Footer>
+    <p>Hello React!!</p>
+    <MyButton>Button</MyButton>
   </div>
 );
 

@@ -32,7 +32,7 @@ const start = () => {
       console.log('file added', file);
       if(isReady) {
         fs.writeFileSync(indexFile,
-          addScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, jsLink(file)));
+          addScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, jsLink(file), ~file.search('app.js') ? 'bottom' : 'top'));
       } else {
         files.push(jsLink(file));
       }
