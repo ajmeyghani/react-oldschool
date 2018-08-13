@@ -1,7 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-const lodash = require('lodash');
-
 /**
  * Given a string, representing the content of a file, returns
  * the start and the end line numbers where the pattern appears in the file.
@@ -78,13 +74,10 @@ const removeScript = (indexContent, patterns, toRemove) => {
   const lines = content.split('\n');
   if(Array.isArray(toRemove)) {
     const doesContain = (v, arr) => arr.some(r => ~v.search(new RegExp(`${r}\\b`)));
-    const remove = (vals, key) => (
-      vals.filter(v => doesContain(v, key) ? false : true)
-    );
+    const remove = (vals, key) => vals.filter(v => doesContain(v, key) ? false : true);
     return remove(lines, toRemove).join('\n');
-  } else {
-    return lines.filter(v => v.search(toRemove) === -1).join('\n');
   }
+  return lines.filter(v => v.search(toRemove) === -1).join('\n');
 };
 
 module.exports = {

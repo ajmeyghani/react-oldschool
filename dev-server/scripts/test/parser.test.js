@@ -1,7 +1,7 @@
 const test = require('tape');
 const tapSpec = require('tap-spec');
 const fixture = require('./index.fixture');
-const {getBoundaries, resetScripts, addScript, removeScript} = require('./reader');
+const {getBoundaries, resetScripts, addScript, removeScript} = require('../parser');
 
 test.createStream().pipe(tapSpec()).pipe(process.stdout);
 
