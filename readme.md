@@ -16,6 +16,10 @@ This is a lightweight React boilerplate without Webpack. You can add Webpack if 
 
 Any JavaScript file added in the `src` folder is merged into one during development and is placed in `dev-bundles/all.js`. Similarly, any `css` file in the `src` folder is grouped into a single css file placed in `dev-bundles/all.css`.
 
+## Build
+
+Run `yarn run build` to build the app.
+
 **Note**
 
 You can configure the dev server using the config file in `dev-server/config.json`.
