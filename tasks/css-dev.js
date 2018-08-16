@@ -5,7 +5,7 @@ const {getBoundaries, resetScripts, addScript, removeScript} = require('./lib/pa
 
 const start = () => {
   const SOURCE = './src/**/*.css';
-  const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
+  const indexFile = path.join(__dirname, '../', 'dev-server/views/pages/index.ejs');
   const cssLink = (file) => `<link rel="stylesheet" href="/${file}">`;
   let isReady = false;
   let files = [];
@@ -18,11 +18,11 @@ const start = () => {
     fs.writeFileSync(indexFile, resetScripts(fs.readFileSync(indexFile, 'utf-8'), cssBoundaries));
     const watcher = chokidar.watch(SOURCE, {
       ignored: /(^|[\/\\])\../,
-      persistent: true
+      persistent: true,
     })
     .on('add', (file) => {
       console.log('file added', file);
-      if(isReady) {
+      if (isReady) {
         fs.writeFileSync(indexFile,
           addScript(fs.readFileSync(indexFile, 'utf-8'), cssBoundaries, cssLink(file)));
       } else {
@@ -42,7 +42,7 @@ const start = () => {
     });
     // .on('addDir', path => log(`Directory ${path} has been added`))
     // .on('unlinkDir', path => log(`Directory ${path} has been removed`));
-  } catch(e) {
+  } catch (e) {
     throw new Error(e);
   }
 };

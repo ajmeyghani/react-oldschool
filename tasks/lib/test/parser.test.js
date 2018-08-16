@@ -6,7 +6,6 @@ const {getBoundaries, resetScripts, addScript, removeScript} = require('../parse
 test.createStream().pipe(tapSpec()).pipe(process.stdout);
 
 test('getBoundaries, for the given regular expressions (CSS):', (t) => {
-
   const cssBoundaries = {
     start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
@@ -18,7 +17,6 @@ test('getBoundaries, for the given regular expressions (CSS):', (t) => {
 });
 
 test('getBoundaries, for the given regular expressions (JS):', (t) => {
-
   const cssBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -30,7 +28,6 @@ test('getBoundaries, for the given regular expressions (JS):', (t) => {
 });
 
 test('resetScripts: for the given regular expressions (CSS):', (t) => {
-
   const cssBoundaries = {
     start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
@@ -62,7 +59,6 @@ test('resetScripts: for the given regular expressions (CSS):', (t) => {
 });
 
 test('resetScripts: for the given regular expressions (JS):', (t) => {
-
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -93,7 +89,6 @@ test('resetScripts: for the given regular expressions (JS):', (t) => {
 });
 
 test('addScript: for the given regular expressions (css):', (t) => {
-
   const cssBoundaries = {
     start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
@@ -121,12 +116,12 @@ new css file
   </body>
   </html>`;
 
-  t.equal(addScript(resetScripts(fixture, cssBoundaries), cssBoundaries, 'new css file'), expected, 'should add the script.');
+  t.equal(addScript(resetScripts(fixture, cssBoundaries), cssBoundaries, 'new css file'),
+  expected, 'should add the script.');
   t.end();
 });
 
 test('addScript: for the given regular expressions (css):', (t) => {
-
   const cssBoundaries = {
     start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
@@ -162,7 +157,6 @@ test('addScript: for the given regular expressions (css):', (t) => {
 });
 
 test('addScript: for the given regular expressions (js):', (t) => {
-
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -199,7 +193,6 @@ test('addScript: for the given regular expressions (js):', (t) => {
 });
 
 test('addScript: for the given regular expressions (js):', (t) => {
-
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -226,12 +219,12 @@ new js file
   </body>
   </html>`;
 
-  t.equal(addScript(resetScripts(fixture, jsBoundaries), jsBoundaries, 'new js file'), expected, 'should add the script.');
+  t.equal(addScript(resetScripts(fixture, jsBoundaries), jsBoundaries, 'new js file'),
+  expected, 'should add the script.');
   t.end();
 });
 
 test('addScript: add multiple scripts', (t) => {
-
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -259,12 +252,12 @@ new js file 2
   </body>
   </html>`;
 
-  t.equal(addScript(resetScripts(fixture, jsBoundaries), jsBoundaries, ['new js file', 'new js file 2']), expected, 'should add multiple links.');
+  t.equal(addScript(resetScripts(fixture, jsBoundaries), jsBoundaries,
+  ['new js file', 'new js file 2']), expected, 'should add multiple links.');
   t.end();
 });
 
 test('removeScript: for the given regular expressions (css):', (t) => {
-
   const cssBoundaries = {
     start: /.*<!\-\-\s*start\s*css\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*css\s*\-\->.*/,
@@ -292,12 +285,12 @@ test('removeScript: for the given regular expressions (css):', (t) => {
   </body>
   </html>`;
 
-  t.equal(removeScript(fixture, cssBoundaries, 'css file 2'), expected, 'should remove the given script, containing the pattern.');
+  t.equal(removeScript(fixture, cssBoundaries, 'css file 2'),
+  expected, 'should remove the given script, containing the pattern.');
   t.end();
 });
 
 test('removeScript: for the given regular expressions (js):', (t) => {
-
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -325,12 +318,12 @@ test('removeScript: for the given regular expressions (js):', (t) => {
   </body>
   </html>`;
 
-  t.equal(removeScript(fixture, jsBoundaries, 'js file 3'), expected, 'should remove the given script, containing the pattern.');
+  t.equal(removeScript(fixture, jsBoundaries, 'js file 3'),
+  expected, 'should remove the given script, containing the pattern.');
   t.end();
 });
 
 test('removeScript: for the given regular expressions (js or css):', (t) => {
-
   const jsBoundaries = {
     start: /.*<!\-\-\s*start\s*js\s*\-\->.*/,
     end: /.*<!\-\-\s*end\s*js\s*\-\->.*/,
@@ -357,6 +350,7 @@ test('removeScript: for the given regular expressions (js or css):', (t) => {
   </body>
   </html>`;
 
-  t.equal(removeScript(fixture, jsBoundaries, ['js file 3', 'js file 4']), expected, 'should remove multiple scripts.');
+  t.equal(removeScript(fixture, jsBoundaries, ['js file 3', 'js file 4']),
+  expected, 'should remove multiple scripts.');
   t.end();
 });

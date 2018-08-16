@@ -8,7 +8,7 @@ const ENTRY_FILE = config.jsEntry;
 
 const start = () => {
   const SOURCE = './src/**/*.js';
-  const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
+  const indexFile = path.join(__dirname, '../', 'dev-server/views/pages/index.ejs');
   const jsLink = (file) => `<script src="/${file.replace('src/', `${config.devJs}/`)}"></script>`;
   let isReady = false;
   let files = [];
@@ -27,11 +27,11 @@ const start = () => {
     fs.writeFileSync(indexFile, resetScripts(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries));
     const watcher = chokidar.watch(SOURCE, {
       ignored: /(^|[\/\\])\../,
-      persistent: true
+      persistent: true,
     })
     .on('add', (file) => {
       console.log('file added', file);
-      if(isReady) {
+      if (isReady) {
         fs.writeFileSync(indexFile, addScript(fs.readFileSync(indexFile, 'utf-8'),
           jsBoundaries, jsLink(file), ~file.search(ENTRY_FILE) ? 'bottom' : 'top'));
       } else {
@@ -41,8 +41,8 @@ const start = () => {
     .on('ready', () => {
       console.log('Watching js files ...');
       isReady = true;
-      const excludeAppjs = files.filter(f => f.search(ENTRY_FILE) === -1);
-      const appjs = files.filter(f => ~f.search(ENTRY_FILE));
+      const excludeAppjs = files.filter((f) => f.search(ENTRY_FILE) === -1);
+      const appjs = files.filter((f) => ~f.search(ENTRY_FILE));
       const filesWithApp = excludeAppjs.concat(appjs);
       fs.writeFileSync(indexFile,
         addScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, filesWithApp));
@@ -55,7 +55,7 @@ const start = () => {
     });
     // .on('addDir', path => log(`Directory ${path} has been added`))
     // .on('unlinkDir', path => log(`Directory ${path} has been removed`));
-  } catch(e) {
+  } catch (e) {
     throw new Error(e);
   }
 };

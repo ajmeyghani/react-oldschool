@@ -10,13 +10,13 @@ const getBoundaries = (content, patterns) => {
   let start = undefined;
   let end = undefined;
   lines.some((v, i) => {
-    if(patterns.start.test(v)) {
+    if (patterns.start.test(v)) {
       start = i;
       return true;
     }
   });
   lines.some((v, i) => {
-    if(patterns.end.test(v)) {
+    if (patterns.end.test(v)) {
       end = i;
       return true;
     }
@@ -30,11 +30,12 @@ const getBoundaries = (content, patterns) => {
  * Remove any scripts that are left over resulting in a clean file
  * with clear boundaries.
  * @param  {string} indexContent content of the file, usually index.html
+ * @param  {object} patterns object containing `start` end `end` regular expressions.
  * @return {string} content of the file after the scripts lines have been removed.
  */
 const resetScripts = (indexContent, patterns) => {
   const {start, end, lines} = getBoundaries(indexContent, patterns);
-  if(start === end - 1) {
+  if (start === end - 1) {
     return indexContent;
   }
   const leftPartition = lines.slice(0, start + 1);
@@ -55,7 +56,7 @@ const addScript = (indexContent, patterns, newItem, position) => {
   const {start, end, lines} = getBoundaries(indexContent, patterns);
   let scripts = lines.slice(start + 1, end);
   const isArray = Array.isArray(newItem);
-  if(position === 'top') {
+  if (position === 'top') {
     isArray ? scripts.unshift(...newItem) : scripts.unshift(newItem);
   } else {
     scripts = scripts.concat(newItem);
@@ -73,12 +74,12 @@ const addScript = (indexContent, patterns, newItem, position) => {
  */
 const removeScript = (indexContent, patterns, toRemove) => {
   const {start, end, lines} = getBoundaries(indexContent, patterns);
-  if(Array.isArray(toRemove)) {
-    const doesContain = (v, arr) => arr.some(r => ~v.search(r));
-    const remove = (vals, key) => vals.filter(v => doesContain(v, key) ? false : true);
+  if (Array.isArray(toRemove)) {
+    const doesContain = (v, arr) => arr.some((r) => ~v.search(r));
+    const remove = (vals, key) => vals.filter((v) => doesContain(v, key) ? false : true);
     return remove(lines, toRemove).join('\n');
   }
-  return lines.filter(v => v.search(toRemove) === -1).join('\n');
+  return lines.filter((v) => v.search(toRemove) === -1).join('\n');
 };
 
 module.exports = {
