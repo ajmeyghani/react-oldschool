@@ -4,22 +4,22 @@ const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const mockApi = require('./mock-api');
 const app = express();
-const ROOT_PATH = process.cwd();
-const nodeModules = path.join(ROOT_PATH, 'node_modules');
-const src = path.join(ROOT_PATH, 'src');
-const devJs = path.join(ROOT_PATH, config.devJs);
-const devBundles = path.join(ROOT_PATH, config.bundleFolder);
-const buildFolder = path.join(ROOT_PATH, config.buildFolder);
+const buildFolder = path.join(process.cwd(), config.buildFolder);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-app.use('/node_modules', express.static(nodeModules));
-app.use('/src', express.static(src));
-app.use('/' + config.devJs, express.static(devJs));
-app.use('/' + config.bundleFolder, express.static(devBundles));
-app.use('/' + config.buildFolder, expressStaticGzip(buildFolder));
 app.use('/api', mockApi);
+
+const staticPaths = ['node_modules', 'src', config.devJs, config.bundleFolder,];
+staticPaths.map((p) => ({
+  name: '/' + p,
+  fullpath: path.join(process.cwd(), p),
+}))
+.forEach((p) => {
+  app.use(p.name, express.static(p.fullpath));
+});
+
+app.use('/' + config.buildFolder, expressStaticGzip(buildFolder));
 
 app.all(/^\/(?!api).*/, (req, res) => {
   res.render('pages/index', {
@@ -28,8 +28,8 @@ app.all(/^\/(?!api).*/, (req, res) => {
   });
 });
 
-const isAllJs = new RegExp(`.*${config.jsBundle}$`);
-app.all(isAllJs, (req, res) => {
+const isJsBundle = new RegExp(`.*${config.jsBundle}$`);
+app.all(isJsBundle, (req, res) => {
   res.sendFile(config.jsBundle, {root: path.join(config.bundleFolder)});
 });
 

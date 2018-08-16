@@ -1,12 +1,14 @@
-# React Boilerplate 2018
+# Old School React Boilerplate
 
-This is a lightweight React boilerplate without Webpack. You can add Webpack if you need to, but I tried to keep things as simple as possible.
+This is a lightweight, old-school React boilerplate without Webpack, great for rapid prototyping and designing in the browser. But you'd probably need a different kind of setup for production with a bundler depending on your project.
 
 ## What's Included
 
-- JSX transformation to JS
-- CSS concatenation
-- Dev server with live reloading using `browser-refresh`
+This is an old-school project set up without any project bundler. Everything is automatically loaded in the index file, without any module loader, which is great for rapid prototyping and designing in the browser. The following is provided:
+
+- Automatic JSX transformation to JS (no compilation to ES5 or below)
+- Automatic CSS injection with `browser-refresh`, great for designing in the browser
+- Dev server automatically loading CSS and JavaScript files from `src` into the `index` file with old-school `link` or `script `tags
 
 ## Usage
 
@@ -16,7 +18,7 @@ This is a lightweight React boilerplate without Webpack. You can add Webpack if 
 
 Any JavaScript or CSS file added in the `src` directory will be automatically loaded in the `index` file.
 
-## Build
+## Build (experimental)
 
 Run `yarn run build` to build the app. The artifacts will be placed in the `dist` folder.
 

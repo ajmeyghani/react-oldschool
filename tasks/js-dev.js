@@ -8,7 +8,7 @@ const ENTRY_FILE = config.jsEntry;
 
 const start = () => {
   const SOURCE = './src/**/*.js';
-  const indexFile = path.join(__dirname, '../', 'dev-server/views/pages/index.ejs');
+  const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
   const jsLink = (file) => `<script src="/${file.replace('src/', `${config.devJs}/`)}"></script>`;
   let isReady = false;
   let files = [];

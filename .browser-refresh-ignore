@@ -1,4 +1,6 @@
 .git/
-src/
 *.map
 node_modules/
+dev-bundle/
+dist/
+src/

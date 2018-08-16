@@ -1,9 +1,8 @@
 const browserRefreshClient = require('browser-refresh-client');
 const config = require('../config.json');
 const app = require('./app');
-const PORT = config.devPort;
+const PORT = config.devPort || 8080;
 
-/* handle browser refresh */
 const PATTERNS = '*.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg';
 const isImage = (path) => /\.png$/.test(path);
 const isStyle = (path) => /\.css$/.test(path);

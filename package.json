@@ -1,5 +1,5 @@
 {
-  "name": "react-boilerplate-2018",
+  "name": "react-oldschool",
   "version": "1.0.0",
   "description": "A simple boilerplate for React projects.",
   "scripts": {
@@ -7,7 +7,7 @@
     "clean:dev": "node tasks/cleanup-dev",
     "css:dev": "node tasks/css-dev",
     "js:dev": "node tasks/js-dev",
-    "server:dev": "browser-refresh dev-server/www.js",
+    "server:dev": "browser-refresh server/www.js",
     "build": "node tasks/build"
   },
   "repository": "https://github.com/aminmeyghani/react-boilerplate-2018",

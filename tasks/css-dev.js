@@ -5,7 +5,7 @@ const {getBoundaries, resetScripts, addScript, removeScript} = require('./lib/pa
 
 const start = () => {
   const SOURCE = './src/**/*.css';
-  const indexFile = path.join(__dirname, '../', 'dev-server/views/pages/index.ejs');
+  const indexFile = path.join(__dirname, '../', 'server/views/pages/index.ejs');
   const cssLink = (file) => `<link rel="stylesheet" href="/${file}">`;
   let isReady = false;
   let files = [];
