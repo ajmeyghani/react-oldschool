@@ -1,5 +1,5 @@
 const express = require('express');
-const api = express.Router();
+const api = new express.Router();
 
 api.get('/', (req, resp) => {
   resp.json({

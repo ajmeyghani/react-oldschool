@@ -6,7 +6,7 @@ This is a lightweight React boilerplate without Webpack. You can add Webpack if 
 
 - JSX transformation to JS
 - CSS concatenation
-- Dev server with auto refresh using `browser-refresh`
+- Dev server with live reloading using `browser-refresh`
 
 ## Usage
 
@@ -22,12 +22,12 @@ Run `yarn run build` to build the app. The artifacts will be placed in the `dist
 
 **Note**
 
-You can configure the dev server using the config file in `dev-server/config.json`.
+You can configure the dev server using the config file in `config.json`.
 
 ## Development
 
-All the dev scripts are in the `dev-server/tasks` folder. To run the tests for the scripts, run the following:
+All the dev scripts are in the `tasks` folder. To run the tests for the scripts, run the following:
 
 ```
-npx tape 'dev-server/**/*.test.js'
+npx tape 'tasks/**/*.test.js'
 ```

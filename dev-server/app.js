@@ -1,7 +1,7 @@
 const path = require('path');
 const config = require('../config.json');
 const express = require('express');
-const expressStaticGzip = require("express-static-gzip");
+const expressStaticGzip = require('express-static-gzip');
 const mockApi = require('./mock-api');
 const app = express();
 const ROOT_PATH = process.cwd();
@@ -30,17 +30,17 @@ app.all(/^\/(?!api).*/, (req, res) => {
 
 const isAllJs = new RegExp(`.*${config.jsBundle}$`);
 app.all(isAllJs, (req, res) => {
-  res.sendFile(config.jsBundle, {root: path.join(config.bundleFolder) });
+  res.sendFile(config.jsBundle, {root: path.join(config.bundleFolder)});
 });
 
-app.all("/404", (req, res, next) => {
+app.all('/404', (req, res, next) => {
   res.render('pages/error', {
     reason: 'not sure',
   });
 });
 
 app.get('*', (req, res, next) => {
- console.log("404: " + req.originalUrl + " was not found")
+ console.log('404: ' + req.originalUrl + ' was not found');
  res.status(404).redirect('/404');
 });
 

@@ -5,10 +5,10 @@ const PORT = config.devPort;
 
 /* handle browser refresh */
 const PATTERNS = '*.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg';
-const isImage = path => /\.png$/.test(path);
-const isStyle = path => /\.css$/.test(path);
+const isImage = (path) => /\.png$/.test(path);
+const isStyle = (path) => /\.css$/.test(path);
 browserRefreshClient
-.enableSpecialReload(PATTERNS, { autoRefresh: false })
+.enableSpecialReload(PATTERNS, {autoRefresh: false})
 .onFileModified(function(path) {
   if (isImage(path)) {
     browserRefreshClient.refreshImages();
