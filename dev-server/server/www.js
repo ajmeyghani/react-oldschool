@@ -1,6 +1,7 @@
 const browserRefreshClient = require('browser-refresh-client');
+const config = require('../config.json');
 const app = require('./app');
-const PORT = 8080;
+const PORT = config.devPort;
 
 /* handle browser refresh */
 const PATTERNS = '*.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg';

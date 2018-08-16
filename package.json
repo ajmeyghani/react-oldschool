@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "A simple boilerplate for React projects.",
   "scripts": {
-    "dev": "rm -rf js && run-p css:dev js:dev server:dev",
-    "css:dev": "node dev-server/scripts/css-dev",
-    "js:dev": "node dev-server/scripts/js-dev",
+    "dev": "node dev-server/tasks/cleanup-dev && run-p css:dev js:dev server:dev",
+    "css:dev": "node dev-server/tasks/css-dev",
+    "js:dev": "node dev-server/tasks/js-dev",
     "server:dev": "browser-refresh dev-server/server/www.js",
-    "build": "node dev-server/scripts/build"
+    "build": "node dev-server/tasks/build"
   },
   "repository": "https://github.com/aminmeyghani/react-boilerplate-2018",
   "author": "AJ Meyghani",

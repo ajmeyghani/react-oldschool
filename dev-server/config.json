@@ -4,5 +4,6 @@
   "cssBundle": "bundle.css",
   "jsBundle": "bundle.js",
   "devJs": "dev-js",
-  "jsEntry": "main.js"
+  "jsEntry": "main.js",
+  "devPort": "8080"
 }

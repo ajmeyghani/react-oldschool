@@ -82,5 +82,8 @@ const removeScript = (indexContent, patterns, toRemove) => {
 };
 
 module.exports = {
-  getBoundaries, resetScripts, addScript, removeScript,
+  getBoundaries,
+  resetScripts,
+  addScript,
+  removeScript,
 };

@@ -32,8 +32,8 @@ const start = () => {
     .on('add', (file) => {
       console.log('file added', file);
       if(isReady) {
-        fs.writeFileSync(indexFile,
-          addScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, jsLink(file), ~file.search(ENTRY_FILE) ? 'bottom' : 'top'));
+        fs.writeFileSync(indexFile, addScript(fs.readFileSync(indexFile, 'utf-8'),
+          jsBoundaries, jsLink(file), ~file.search(ENTRY_FILE) ? 'bottom' : 'top'));
       } else {
         files.push(jsLink(file));
       }
@@ -50,7 +50,8 @@ const start = () => {
     .on('unlink', (file) => {
       console.log('removed file', file);
       fs.writeFileSync(indexFile,
-        removeScript(fs.readFileSync(indexFile, 'utf-8'), jsBoundaries, file.replace('src', config.devJs)));
+        removeScript(fs.readFileSync(indexFile, 'utf-8'),
+        jsBoundaries, file.replace('src', config.devJs)));
     });
     // .on('addDir', path => log(`Directory ${path} has been added`))
     // .on('unlinkDir', path => log(`Directory ${path} has been removed`));

@@ -14,11 +14,11 @@ This is a lightweight React boilerplate without Webpack. You can add Webpack if 
 - `yarn run dev`
 - Open `http://localhost:8080` to view the page.
 
-Any JavaScript file added in the `src` folder is merged into one during development and is placed in `dev-bundles/all.js`. Similarly, any `css` file in the `src` folder is grouped into a single css file placed in `dev-bundles/all.css`.
+Any JavaScript or CSS file added in the `src` directory will be automatically loaded in the `index` file.
 
 ## Build
 
-Run `yarn run build` to build the app.
+Run `yarn run build` to build the app. The artifacts will be placed in the `dist` folder.
 
 **Note**
 
@@ -26,7 +26,7 @@ You can configure the dev server using the config file in `dev-server/config.jso
 
 ## Development
 
-All the dev scripts are in the `dev-server/scripts` folder. To run the tests for the scripts, run the following:
+All the dev scripts are in the `dev-server/tasks` folder. To run the tests for the scripts, run the following:
 
 ```
 npx tape 'dev-server/**/*.test.js'
