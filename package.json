@@ -10,7 +10,7 @@
     "server:dev": "browser-refresh server/www.js",
     "build": "node tasks/build"
   },
-  "repository": "https://github.com/aminmeyghani/react-boilerplate-2018",
+  "repository": "https://github.com/aminmeyghani/react-oldschool",
   "author": "AJ Meyghani",
   "license": "MIT",
   "devDependencies": {
