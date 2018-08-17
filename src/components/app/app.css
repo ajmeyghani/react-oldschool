@@ -1,9 +1,9 @@
 * {
-  transition: all 250ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .hello {
-  border: 6px solid #2686d6;
+  border: 1px solid #2686d6;
   padding: 2rem;
   font-size: 1.8rem;
   background-color: #0282c8;

@@ -1,1 +1,1 @@
-const App = (props) => <p className='hello'>Hello React!</p>;
+const App = (props) => <p className='hello'>Hello React.</p>;
