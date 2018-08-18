@@ -1,6 +1,6 @@
 # Old School React Boilerplate
 
-This is a lightweight, old-school React boilerplate without Webpack, great for rapid prototyping and designing in the browser. But you'd probably need a different kind of setup for production with a bundler depending on your project.
+This is a lightweight, old-school React boilerplate without Webpack, great for rapid prototyping and designing in the browser.
 
 ## What's Included
 
